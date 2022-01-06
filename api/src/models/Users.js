@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
-  sequelize.define('usuarios', {
+  sequelize.define('users', {
     id: {
       //add uui
       type: DataTypes.UUID,
@@ -10,11 +10,11 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     },
     lastName: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     },
     rol: {
       type: DataTypes.ENUM("Instructor", "Alumno", "Piloto", "InstructorAdmin", "Admin"),
