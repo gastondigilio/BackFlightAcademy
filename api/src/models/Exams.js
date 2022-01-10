@@ -4,32 +4,26 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('exams', {
-    // id: {
-      //add uui
-    //   type: DataTypes.UUID,
-    //   defaultValue: DataTypes.UUIDV1,
-    //   allowNull: false,
-    //   primaryKey: true,
-    // },
+    id: {
+
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV1,
+      allowNull: false,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+
+    },
     language: {
       type: DataTypes.ENUM("Español", "Ingles", "Portugues"),
       allowNull: false,
     },
-    manuals: {
-      type: DataTypes.STRING,
+    url: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
-    videos: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    checklist: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+ 
   });
 };
