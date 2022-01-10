@@ -1,17 +1,24 @@
-const {Exams} = require ('../../db.js');
+const { Exams } = require('../../db.js');
 
 
-async function getExams(req,res,next){
+async function uploadExams(req, res, next) {
+    const { name, language, url } = req.body;
     try {
-        const allExams = await Exams.findAll()
-        if(allExams){
-            return res.status(200).json(allExams)
-        }else{
-            return res.status(400).json({message:"No Tests Found"})
+        if (name && language && url) {
+            const examCreated = await Exams.create({
+                name, language, url
+
+            })
+            if (examCreated) {
+                return res.status(200).json({ message: "exam created successfully" })
+            } else {
+                return res.status(400).json({ message: "the exam was not created" })
+            }
         }
+
     } catch (error) {
         next(error)
     }
 }
 
-module.exports= {getExams}
+module.exports = { uploadExams }
