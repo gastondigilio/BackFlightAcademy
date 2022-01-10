@@ -52,22 +52,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       // allowNull: false,
     },
-    totalFlightHours: {
-      type: DataTypes.INTEGER,
-      // allowNull: false,
-    },
-    totalFlights: {
-      type: DataTypes.INTEGER,
-      // allowNull: false,
-    },
-    flightHoursCurrentMonth: {
-      type: DataTypes.INTEGER,
-      // allowNull: false,
-    },
-    nextHours: {
-      type: DataTypes.STRING,
-      // allowNull: false,
-    },
     subjectsApproved: {
       type: DataTypes.STRING,
       // allowNull: false,
