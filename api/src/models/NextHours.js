@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('hoursPending', {
+  sequelize.define('nextHours', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV1,
@@ -11,6 +11,15 @@ module.exports = (sequelize) => {
       primaryKey: true,
     },
       nextHours: {
+        type: DataTypes.STRING,
+        // allowNull: false,
+      },
+      state: {
+        type: DataTypes.ENUM("Pending", "Canceled", "Aproved"),
+        defaultValue: "Pending",
+        allowNull: false,
+      },
+      plane: {
         type: DataTypes.STRING,
         // allowNull: false,
       },
