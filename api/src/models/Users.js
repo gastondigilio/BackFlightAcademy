@@ -60,5 +60,8 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       // allowNull: false,
     },
+    pass:{
+      type: DataTypes.STRING,
+    }
   });
 };

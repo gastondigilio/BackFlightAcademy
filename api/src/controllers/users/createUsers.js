@@ -1,12 +1,12 @@
 const { Users } = require('../../db.js');
 
 async function createUsers(req, res, next) {
-    const { name, lastName, rol, document, birthday, nationality, country, province, cp, location, address, email } = req.body;
+    const { name, lastName, rol, document, birthday, nationality, country, province, cp, location, address, email, pass } = req.body;
     try {
-        if (rol === "Alumno" || rol === "Piloto" || rol === "Instructor" || rol === "InstructorAdmin" || rol === "Admin") {
+        if (rol === "Alumno" || rol === "Piloto" || rol === "Instructor" || rol === "InstructorAdmin" || rol === "Admin" && pass ) {
             try {
                 const users = await Users.create({
-                    name, lastName, rol, document, birthday, nationality, country, province, cp, location, address, email
+                    name, lastName, rol, document, birthday, nationality, country, province, cp, location, address, email, pass
                 });
 
                 if (users) {
@@ -18,7 +18,7 @@ async function createUsers(req, res, next) {
                 next(error);
             }
         } else {
-            return res.status(400).json({ message: 'rol selected is not valid' })
+            return res.status(400).json({ message: 'rol selected is not valid o pass no enviada' })
         }
     } catch (error) {
         next(error);
