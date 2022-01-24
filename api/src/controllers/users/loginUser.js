@@ -13,7 +13,7 @@ async function loginUser(req, res, next){
                     if(user){
                          if(user.pass === pass && user.email === email){
                              console.log(user.pass, pass, user.email, email)
-                            return res.status(200).json(user);
+                            return res.status(200).send(user);
                         }else{
                             return res.status(400).json({message: "Las credenciales  no coinciden"});
                         } 

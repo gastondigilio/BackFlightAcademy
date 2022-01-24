@@ -2,7 +2,8 @@ const { Hours, Users } = require('../../db.js');
 
 
 async function getHoursById(req, res, next) {
-    const { id } = req.body;
+    const { id } = req.query;
+    console.log(id, "idddd")
     try {
         if (!id) {
             return res.status(400).json({
@@ -17,7 +18,11 @@ async function getHoursById(req, res, next) {
                 ],
             });
             if (user) {
-                return res.status(200).send(user);
+                if(user.hours[0]){
+                    return res.status(200).send(user.hours[0]);
+                }else{
+                    return res.status(400).json({message: "This user has not hours uploaded"})
+                }
             } else {
                 return res.status(400).json({ message: "User not found"})
             }

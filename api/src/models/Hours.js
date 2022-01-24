@@ -22,9 +22,9 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         // allowNull: false,
       },
-      nextHours: {
-        type: DataTypes.STRING,
+      // nextHours: {
+        // type: DataTypes.STRING,
         // allowNull: false,
-      },
+      // },
   });
 };
