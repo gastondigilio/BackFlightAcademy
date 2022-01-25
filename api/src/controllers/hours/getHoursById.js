@@ -3,7 +3,6 @@ const { Hours, Users } = require('../../db.js');
 
 async function getHoursById(req, res, next) {
     const { id } = req.query;
-    console.log(id, "idddd")
     try {
         if (!id) {
             return res.status(400).json({
