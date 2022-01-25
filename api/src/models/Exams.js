@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-
+      // asdasd
     },
     language: {
       type: DataTypes.ENUM("Español", "Ingles", "Portugues"),
