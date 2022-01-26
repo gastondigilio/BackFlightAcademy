@@ -21,5 +21,4 @@ async function uploadHours(req, res, next) {
         next(error);
     }
 }
-// asdasd
 module.exports = { uploadHours }
