@@ -2,7 +2,8 @@ const { NextHours, Users } = require('../../db.js');
 
 
 async function getNextHoursByUserId(req, res, next) {
-    const { userId } = req.body;
+    const { userId } = req.query;
+    console.log(userId);
     try {
         if (!userId) {
             return res.status(400).json({
@@ -20,7 +21,7 @@ async function getNextHoursByUserId(req, res, next) {
                 if (user.nextHours.length > 0 && user.nextHours[0].userId === userId) {
                     const hoursId = user.nextHours[0].id
                     if (hoursId) {
-                        const nextHoursObtained = user.nextHours[0];
+                        const nextHoursObtained = user.nextHours;
                         if (nextHoursObtained) {
                             return res.status(200).json(nextHoursObtained)
                         } else {
@@ -40,5 +41,5 @@ async function getNextHoursByUserId(req, res, next) {
         next(error);
     }
 }
-
+// asdasdasdas
 module.exports = { getNextHoursByUserId }
