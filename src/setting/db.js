@@ -61,8 +61,9 @@ const { Users, Studyaterial, Exams, Croquis, Hours, NextHours } = sequelize.mode
 Users.hasMany(Hours)
 Hours.belongsTo(Users)
 
-Users.hasMany(NextHours)
-NextHours.belongsTo(Users)
+Users.belongsToMany(NextHours,{through: 'users_appointments'});
+NextHours.belongsToMany(Users,{through: 'users_appointments'});
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
