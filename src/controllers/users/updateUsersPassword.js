@@ -1,4 +1,4 @@
-const { Users } = require('../../db.js');
+const { Users } = require('../../setting/db.js');
 
 async function updateUsersPassword(req, res, next) {
     const { id, email, pass } = req.body;

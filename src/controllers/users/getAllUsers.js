@@ -1,4 +1,4 @@
-const {Users} = require ('../../db.js');
+const {Users} = require ('../../setting/db.js');
 
 async function getAllUsers(req, res, next){
     try {

@@ -1,5 +1,5 @@
 
-const {Users} = require ('../../db.js');
+const {Users} = require ('../../setting/db.js');
 
 async function loginUser(req, res, next){
     const {pass, email} = req.body ;

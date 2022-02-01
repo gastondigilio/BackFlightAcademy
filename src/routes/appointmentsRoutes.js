@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const {getAppointmentsByUserId} = require('../controllers/appointments/getAppointments');
 const {uploadAppointments} = require('../controllers/appointments/uploadAppointments');
-const {updateAppointments} = require('../controllers/appointments/updateAppointments');
+const {updateAppointments} = require('../controllers/appointments/udpateAppointments');
 
 const router = Router();
 

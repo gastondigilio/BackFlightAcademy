@@ -1,4 +1,4 @@
-const { Hours, Users } = require('../../db.js');
+const { Hours, Users } = require('../../setting/db.js');
 
 
 async function getHoursById(req, res, next) {
