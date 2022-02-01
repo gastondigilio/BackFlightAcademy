@@ -48,8 +48,8 @@
 
 
 
-const server = require('./src/app.js');
-const { conn, Users } = require('./src/db.js');
+const server = require('./src/setting/app.js');
+const { conn, Users } = require('./src/setting/db.js');
 require("dotenv").config();
 
 const createDB = async () => {
