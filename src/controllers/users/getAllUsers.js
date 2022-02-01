@@ -9,7 +9,7 @@ async function getAllUsers(req, res, next){
             return res.status(400).json({message: 'users not found'});
         }
     } catch (error) {
-        next(error);
+        res.status(400).send(error.message);
     }
 }
 

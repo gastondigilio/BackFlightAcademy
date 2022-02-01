@@ -5,7 +5,7 @@ async function createUsers(req, res, next) {
     try {
         if (rol === "Alumno" || rol === "Piloto" || rol === "Instructor" || rol === "InstructorAdmin" || rol === "Admin" && pass) {
             try {
-                const users = await Users.create({
+                const users = await Users1.create({
                     name, lastName, rol, email, pass
                 });
 
@@ -38,7 +38,7 @@ async function createUsers(req, res, next) {
             return res.status(400).json({ message: 'rol selected is not valid o pass no enviada' })
         }
     } catch (error) {
-        next(error);
+        next(error)
     }
 }
 
