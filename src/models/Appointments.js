@@ -3,14 +3,14 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('nextHours', {
+  sequelize.define('appointments', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV1,
       allowNull: false,
       primaryKey: true,
     },
-      nextHours: {
+      date: {
         type: DataTypes.STRING,
         // allowNull: false,
       },
