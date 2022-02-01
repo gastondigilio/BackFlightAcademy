@@ -1,17 +1,17 @@
-const { NextHours, Users } = require('../../db.js');
+const { Appointments, Users } = require('../../setting/db.js');
 
 
-async function uploadNextHours(req, res, next) {
-    const { userId, plane, state, nextHours } = req.body;
+async function uploadAppointments (req, res, next) {
+    const { userId, plane, state, date} = req.body;
     try {
         if (userId) {
             const user = await Users.findOne({ where: { id: userId } });
-            if (plane && state && nextHours && user) {
-                const nextHoursUploaded = await NextHours.create({
-                    plane, state, nextHours
+            if (plane && state && date && user) {
+                const appointmentsUploaded = await Appointments.create({
+                    plane, state, date
                 })
-                const nextHoursAdded = await nextHoursUploaded.setUser(user)
-                if (nextHoursAdded) {
+                const appointmentsAdded = await appointmentsUploaded.setUser(user)
+                if (appointmentsAdded) {
                     return res.status(200).json({ message: "appointment asigned successfully" })
                 } else {
                     return res.status(400).json({ message: "the appointment was not asigned" })
@@ -27,4 +27,4 @@ async function uploadNextHours(req, res, next) {
     }
 }
 
-module.exports = { uploadNextHours }
+module.exports = { uploadAppointments }
