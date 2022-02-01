@@ -1,13 +1,13 @@
 {
-  "name": "api",
+  "name": "back end - Flight Academy",
   "version": "1.0.0",
-  "description": "",
+  "description": "app of Flight Academy",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -L",
-    "test": "mocha -w ./tests/**/*.spec.js"
+    "start": "node index.js",
+    "Dev": "nodemon index.js"
   },
-  "author": "Henry",
+  "author": "Flight Academy",
   "license": "ISC",
   "engines": {
     "node": ">=12.18.3",
@@ -26,10 +26,6 @@
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
-    "supertest-session": "^4.1.0",
-    "mocha": "^8.2.1",
-    "chai": "^4.2.0",
-    "nodemon": "^2.0.6",
-    "supertest": "^6.0.1"
+    "nodemon": "^2.0.6"
   }
 }
