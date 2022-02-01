@@ -1,13 +1,10 @@
 const { Router } = require('express');
-const express = require("express");
 const usersRoutes = require('./usersRoutes');
 const examsRoutes = require('./examsRoutes');
 const hoursRoutes = require('./hoursRoutes');
 const appointmentsRoutes = require('./appointmentsRoutes');
-const router = Router();
 
-router.use(express.urlencoded({ extended: true, limit: "50mb" }));
-router.use(express.json({ limit: "50mb" }));
+const router = Router();
 
 router.use('/users', usersRoutes);
 router.use('/exams', examsRoutes);
