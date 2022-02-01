@@ -77,7 +77,7 @@ conn.sync({ force: false }).then(() => {
     try {
       await createDB();
       console.timeEnd("Se creo la base de datos con exito");
-      console.log("%s listening at 3001");
+      console.log(`Server listening at ${process.env.PORT || 3001}`);
     } catch (error) {
       console.log(error, "No se pudo crear la base de datos ");
     }
