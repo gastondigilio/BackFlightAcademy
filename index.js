@@ -47,19 +47,30 @@
                                                                                           */
 
 
+
 const server = require('./src/app.js');
 const { conn, Users } = require('./src/db.js');
 require("dotenv").config();
 
-// Syncing all the models at once.
-// conn.sync({ force: true }).then(() => {
-//   server.listen(3001, () => {
-//     console.log('%s listening at 3001'); // eslint-disable-line no-console
-//   });
-// });
-// asdasd
+const createDB = async () => {
+  //create admin user for testing
+  await Users.findOrCreate({
+    where:{ email: "admin@email.com" },
+    defaults: { name: "adminTest",
+                lastName: "adminLastname",
+                birthday: "2000-01-01",
+                pass: "admin",
+             // gender: "Other",
+                rol: "Admin",
+             // address: "Av Libertador",
+             // cp: "CP1430",
+             // telephone: 11547894 }
+ });
+}
 
-conn.sync({ force: true }).then(() => {
+// Syncing all the models at once.
+
+conn.sync({ force: false }).then(() => {
   server.listen(process.env.PORT || 3001, async () => {
     console.log("Espere a que se cree la base de datos..");
     console.time("Se creo la base de datos con exito");
@@ -72,19 +83,3 @@ conn.sync({ force: true }).then(() => {
     }
   });
 });
-
-const createDB = async () => {
-  //create admin user for testing
-  await Users.create({
-    name: "adminTest",
-    lastName: "adminLastname",
-    birthDay: "2000-01-01",
-    password: "admin",
-    // gender: "Other",
-    rol: "Admin",
-    email: "admin@email.com",
-    // address: "Av Libertador",
-    // cp: "CP1430",
-    // telephone: 11547894,
-  });
-}
