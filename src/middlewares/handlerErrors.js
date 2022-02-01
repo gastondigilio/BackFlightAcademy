@@ -1,8 +1,11 @@
 // Errores
-
-module.exports.handlerErrors = (err, req, res, next) => { // eslint-disable-line no-unused-vars
-  const status = err.status || 500;
-  const message = err.message || err;
-  console.error(err);
-  res.status(status).send(message);
+const handlerErrors = function (err, req, res, next) {
+  res.status(err.status || 500)
+  res.json({
+    error: {
+      message: err.message
+    }
+  })
 }
+
+module.exports = handlerErrors
