@@ -1,26 +1,26 @@
-const { NextHours, Users } = require('../../db.js');
+const { Appointments, Users } = require('../../setting/db.js');
 
 
-async function updateNextHours(req, res, next) {
-    const { userId, plane, state, nextHours } = req.body;
+async function updateAppointments(req, res, next) {
+    const { userId, plane, state, date } = req.body;
     try {
         if (!userId) {
             return res.status(400).json({
                 message: "Bad request",
             });
         } else {
-            if (plane && state && nextHours) {
+            if (plane && state && date) {
                 const user = await Users.findByPk(userId, {
                     include: [
                         {
-                            model: NextHours,
+                            model: Appointments,
                         },
                     ],
                 });
                 if (user) {
                     // si el usuario tiene proximos turnos registrados...
-                    if (user.nextHours.length > 0 && user.nextHours[0].userId === userId) {
-                        const nextHoursId = user.nextHours[0].id
+                    if (user.appointments.length > 0 && user.appointments[0].userId === userId) {
+                        const appointments = user.appointments[0].id
                         if (nextHoursId) {
                             //obtenemos la instancia de horas del respectivo usuario para luego actualizar alguno de los estados
                             const nextHoursUser = await NextHours.findOne({ where: { id: nextHoursId } })
