@@ -1,7 +1,7 @@
-const { NextHours, Users } = require('../../db.js');
+const { Appointments, Users } = require('../../setting/db.js');
 
 
-async function getNextHoursByUserId(req, res, next) {
+async function getAppointmentsByUserId(req, res, next) {
     const { userId } = req.query;
     console.log(userId);
     try {
@@ -13,19 +13,19 @@ async function getNextHoursByUserId(req, res, next) {
             const user = await Users.findByPk(userId, {
                 include: [
                     {
-                        model: NextHours,
+                        model: Appointments,
                     },
                 ],
             });
             if (user) {
-                if (user.nextHours.length > 0 && user.nextHours[0].userId === userId) {
-                    const hoursId = user.nextHours[0].id
+                if (user.appointments.length > 0 && user.appointments[0].userId === userId) {
+                    const hoursId = user.appointments[0].id
                     if (hoursId) {
-                        const nextHoursObtained = user.nextHours;
-                        if (nextHoursObtained) {
-                            return res.status(200).json(nextHoursObtained)
+                        const appointmentsObtained = user.appointments;
+                        if (appointmentsObtained) {
+                            return res.status(200).json(appointmentsObtained)
                         } else {
-                            return res.status(404).json({ message: 'nextHours cannot be obtained' })
+                            return res.status(404).json({ message: 'appointments cannot be obtained' })
                         }
                     } else {
                         res.status(400).json({ message: "nextJoursUser error" })
@@ -41,5 +41,5 @@ async function getNextHoursByUserId(req, res, next) {
         next(error);
     }
 }
-// asdasdasdas
-module.exports = { getNextHoursByUserId }
+
+module.exports = { getAppointmentsByUserId }
