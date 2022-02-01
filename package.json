@@ -1,11 +1,11 @@
 {
-  "name": "back end - Flight Academy",
+  "name": "flight-academy",
   "version": "1.0.0",
   "description": "app of Flight Academy",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "Dev": "nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "author": "Flight Academy",
   "license": "ISC",
