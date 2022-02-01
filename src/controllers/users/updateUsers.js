@@ -1,4 +1,4 @@
-const { Users } = require('../../db.js');
+const { Users } = require('../../setting/db.js');
 
 async function updateUsers(req, res, next) {
     const { id, name, lastName, rol, document, birthday, nationality, country, province, cp, location, address } = req.body;

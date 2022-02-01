@@ -1,4 +1,4 @@
-const { Users, Hours } = require('../../db.js');
+const { Users, Hours } = require('../../setting/db.js');
 
 async function createUsers(req, res, next) {
     const { name, lastName, rol, email, pass } = req.body;

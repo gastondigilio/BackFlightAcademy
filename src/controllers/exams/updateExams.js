@@ -1,4 +1,4 @@
-const { Exams } = require('../../db.js');
+const { Exams } = require('../../setting/db.js');
 
 
 async function updateExams(req, res, next) {
