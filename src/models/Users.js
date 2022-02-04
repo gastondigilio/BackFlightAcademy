@@ -11,57 +11,74 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate:{
+        isAlpha: true
+      },
+      minLength: 2,
+      maxLength: 15
     },
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate:{
+        isAlpha: true
+      },
+      minLength: 2,
+      maxLength: 15
     },
     email: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING,      
+      unique: true,
       allowNull: false,
+      validate: {
+        isEmail: true
+      }
     },
     rol: {
-      type: DataTypes.ENUM("Instructor", "Alumno", "Piloto", "InstructorAdmin", "Admin"),
-      // allowNull: false,
+      type: DataTypes.ENUM("Instructor", "Alumno", "Piloto", "Co-Admin", "Admin"),
+      defaultValue: "Alumno",
     },
     document: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      // allowNull: true,
     },
     birthday: {
-      type: DataTypes.STRING,
-      // allowNull: false,
+      type: DataTypes.DATE,
+      minDate: '01-01-1960',
+      maxDate: '01-01-2004',
+      // allowNull: true,
     },
     nationality:{
       type: DataTypes.STRING,
-      // allowNull: false,
+      // allowNull: true,
     },
     country: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      // allowNull: true,
     },
     province: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      // allowNull: true,
     },
     cp: {
       type: DataTypes.INTEGER,
-      // allowNull: false,
+      // allowNull: true,
     },
     location: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      // allowNull: true,
     },
     address: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      // allowNull: true,
     },
     subjectsApproved: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      // allowNull: true,
     },
-    pass:{
-      type: DataTypes.STRING,
+    password:{
+      type: DataTypes.STRING(60),
+      allowNull: false,
     }
   });
 };

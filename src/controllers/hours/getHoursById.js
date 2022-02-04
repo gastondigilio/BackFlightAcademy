@@ -5,27 +5,28 @@ async function getHoursById(req, res, next) {
     const { id } = req.query;
     try {
         if (!id) {
-            return res.status(400).json({
-                message: "Bad request",
-            });
-        } else {
-            const user = await Users.findByPk(id, {
-                include: [
-                    {
-                        model: Hours,
-                    },
-                ],
-            });
-            if (user) {
-                if(user.hours[0]){
-                    return res.status(200).send(user.hours[0]);
-                }else{
-                    return res.status(400).json({message: "This user has not hours uploaded"})
-                }
-            } else {
-                return res.status(400).json({ message: "User not found"})
-            }
+            await Hours.findAll({
+                include: [{
+                    model: Users,
+                    as: 'user',                    
+                    attributes: ['name', 'lastName', 'email', 'rol']
+                }]
+            }, (err, hours) => {
+                err && next(err);
+                hours && res.status(200).json({
+                    message: 'Hours retrieved successfully',
+                    hours: hours
+                })
+            })
         }
+        await Users.findByPk( id, { include: Hours }, (err, user) => {
+            console.log(err)
+            err && next(err);
+            user && res.status(200).json({
+                message: 'User retrieved successfully',
+                user: user
+            })
+        })
     } catch (error) {
         next(error);
     }
