@@ -36,8 +36,8 @@
 
 const server = require('./src/setting/app.js');
 const { conn, Users } = require('./src/setting/db.js');
-require("dotenv").config();
 const bcrypt = require('bcrypt')
+require("dotenv").config();
 
 const createDB = async () => {
   //create admin user for testing
@@ -66,7 +66,7 @@ conn.sync({ force: true }).then(() => {
     try {
       await createDB();
       console.timeEnd("Se creo la base de datos con exito");
-      console.log("%s listening at 3001");
+      console.log("Server listening at 3001");
     } catch (error) {
      console.log( {message: error.message} );
     }

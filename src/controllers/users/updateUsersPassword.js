@@ -31,4 +31,4 @@ async function updateUsersPassword(req, res, next) {
     }
 }
 
-module.exports = { updateUsersPassword };
+module.exports = updateUsersPassword ;

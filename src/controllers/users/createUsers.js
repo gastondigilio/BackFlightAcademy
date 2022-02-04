@@ -1,38 +1,25 @@
 const { Users, Hours } = require('../../setting/db.js');
+const { hashPass } = require('../../middlewares/bcrypt.js');
+const sendEmailVerificationMessage = require('../../middlewares/sendEmailVerificationMessage.js');
 
 const createUsers = async (req, res, next) => {
-    const { name, lastName, email, pass } = req.body;
-    if ( name && lastName && email && pass ) {
+    const { name, lastName, email, password } = req.body;
         try {
-                const user = await Users.create({ name, lastName, email,pass })
-                console.log(user)
+                const user = await Users.create({name, lastName, email, password: await hashPass(password)})
                 const hours = await Hours.create({
                         totalFlightHours:0,
                         totalFlights:0,
                         flightHoursCurrentMonth:0
                     });
-                    console.log(hours)
-                user && hours && await hours.setUser(user)
+                await hours.setUser(user)
+                sendEmailVerificationMessage(email)
                 res.status(201).json({
-                    message: 'User created successfully',
-                    user: user,
-                    hours: hours
+                    message: 'User created successfully, please verify your email for login'
                 })
             }
             catch (error) {
                 next(error);
-            }
-        }
-    else {
-            console.log('Error: Problem with the data',
-            { name,lastName:lastName, email, pass });
-            return res.status(400).json({
-                message: 'Problem with the data',
-                data: { name, lastName:lastName, email, pass }
-            })
-        }
+            }        
 }
 
-module.exports = {
-    createUsers
-};
+module.exports = createUsers

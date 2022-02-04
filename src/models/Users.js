@@ -12,19 +12,17 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate:{
-        isAlpha: true
-      },
-      minLength: 2,
-      maxLength: 15
+        isAlpha: true,
+        len: [2, 15]        
+      }
     },
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate:{
-        isAlpha: true
-      },
-      minLength: 2,
-      maxLength: 15
+        isAlpha: true,        
+        len: [2, 15]   
+      }
     },
     email: {
       type: DataTypes.STRING,      
@@ -82,6 +80,10 @@ module.exports = (sequelize) => {
         len: [60, 60]
       },
       allowNull: false,
-    }
+    },
+    isVerified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   });
 };

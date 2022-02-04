@@ -13,4 +13,4 @@ async function getAllUsers(req, res, next){
     }
 }
 
-module.exports = {getAllUsers};
+module.exports = getAllUsers;

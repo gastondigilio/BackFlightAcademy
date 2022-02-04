@@ -40,4 +40,4 @@ async function updateUsers(req, res, next) {
     }
 }
 
-module.exports = { updateUsers };
+module.exports = updateUsers ;
