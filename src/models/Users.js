@@ -78,6 +78,9 @@ module.exports = (sequelize) => {
     },
     password:{
       type: DataTypes.STRING(60),
+      validate:{
+        len: [60, 60]
+      },
       allowNull: false,
     }
   });
