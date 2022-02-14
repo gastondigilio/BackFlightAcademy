@@ -41,7 +41,7 @@ module.exports = (sequelize) => {
       // allowNull: true,
     },
     birthday: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       minDate: '01-01-1960',
       maxDate: '01-01-2004',
       // allowNull: true,

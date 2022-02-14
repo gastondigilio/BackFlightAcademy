@@ -2,19 +2,13 @@ const {Users} = require ('../../setting/db.js');
 const { generateToken } = require('../../middlewares/tokens');
 
 const verificateUser = async (req, res, next) => {
-    const { email } = req.query;
-    console.log(email)
+    const { email } = req.body;
     try {   
-        const userExist = await Users.findOne({ where: { email: email}})     
+        const userExist = await Users.findOne({ where: {email}})     
         !userExist && res.status(400).json({message: 'User not exist'});
-        await Users.update({ isVerified: true }, {
-            where: {
-                email: email
-            }
-          })
-        res.send({
-            message: 'User verified successfully'
-            });
+        userExist.isVerified = true 
+        await userExist.save()
+        res.redirect('/')
     }
     catch(error) {
         next(error);
