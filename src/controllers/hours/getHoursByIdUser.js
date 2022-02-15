@@ -1,7 +1,7 @@
 const { Hours, Users } = require('../../setting/db.js');
 
-async function getHoursById(req, res, next) {
-    const { id } = req.query;
+async function getHoursByIdUser(req, res, next) {
+    const { id } = req.body;
     try {
         if (!id) {
             const hours = await Hours.findAll({
@@ -27,4 +27,4 @@ async function getHoursById(req, res, next) {
     }
 }
 
-module.exports = getHoursById
+module.exports = getHoursByIdUser
