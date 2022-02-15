@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
         isEmail: true
       }
     },
-    rol: {
+    role: {
       type: DataTypes.ENUM("Instructor", "Alumno", "Piloto", "Co-Admin", "Admin"),
       defaultValue: "Alumno",
     },

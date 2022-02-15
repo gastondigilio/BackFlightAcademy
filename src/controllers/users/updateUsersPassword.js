@@ -2,9 +2,9 @@ const { Users } = require('../../setting/db.js');
 const { hashPass } = require('../../middlewares/bcrypt.js');
 
 async function updateUsersPassword(req, res, next) {
-    const { id, password } = req.body;
+    const { id, newPassword } = req.body;
     try {
-        const updateUser = await Users.update({ password: await hashPass(password) }, {
+        const updateUser = await Users.update({ password: await hashPass(newPassword) }, {
             where: { id: id }
         })
         res.send(updateUser)
