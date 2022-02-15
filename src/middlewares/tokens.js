@@ -13,11 +13,9 @@ const verifyToken = ( req, res, next) => {
     const { token } = req.body
     try {
         const { id } = jwt.verify(token, process.env.SECRET_KEY);
-        if(id) {
-            req.body.id = id;
-            next();
-        }
-        res.status(401).json({ message: 'Invalid token' });
+        !id && res.status(401).json({ message: 'Invalid token' });
+        req.body.id = id;
+        next();
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' });
     }
