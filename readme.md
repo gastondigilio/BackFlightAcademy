@@ -8,7 +8,7 @@ _Flight Academy is a software development project designed to support flights_
 • Users
 
 localhost:XXXX/users/all (GET)
-BODY: { token, password, }
+BODY: { token }
 
 localhost:XXXX/users/signup (POST)
 BODY: { name, lastName, email, password }
