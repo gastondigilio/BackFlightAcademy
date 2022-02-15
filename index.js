@@ -46,10 +46,10 @@ const createDB = async () => {
     where:{ email: "admin@email.com" },
     defaults: { name: "adminTest",
                 lastName: "adminLastname",
-                birthday: "06-01-1996",
+                birthday: "06/01/1996",
                 password,
              // gender: "Other",
-                rol: "Admin",
+                role: "Admin",
              // address: "Av Libertador",
              // cp: "CP1430",
              // telephone: 11547894

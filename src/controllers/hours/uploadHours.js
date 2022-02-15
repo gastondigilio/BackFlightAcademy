@@ -1,6 +1,5 @@
 const { Hours, Users } = require('../../setting/db.js');
 
-
 async function uploadHours(req, res, next) {
     const { id, totalFlightHours, totalFlights, flightHoursCurrentMonth, nextHours } = req.body;
     try {
@@ -21,6 +20,4 @@ async function uploadHours(req, res, next) {
         next(error);
     }
 }
-module.exports = { uploadHours }
-
-// asdasdasdasd
+module.exports = uploadHours

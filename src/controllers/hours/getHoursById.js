@@ -1,6 +1,5 @@
 const { Hours, Users } = require('../../setting/db.js');
 
-
 async function getHoursById(req, res, next) {
     const { id } = req.query;
     try {
@@ -32,4 +31,4 @@ async function getHoursById(req, res, next) {
     }
 }
 
-module.exports = { getHoursById }
+module.exports = getHoursById

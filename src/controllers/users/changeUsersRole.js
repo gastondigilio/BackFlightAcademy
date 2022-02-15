@@ -13,4 +13,4 @@ const changeUsersRole = async (req, res, next) => {
     }
 }
 
-moduel.exports = changeUsersRole
+module.exports = changeUsersRole
