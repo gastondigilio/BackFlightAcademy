@@ -7,7 +7,7 @@ const onlyAdminOrBelongingToTheUser = require('../middlewares/onlyAdminOrBelongi
 
 const router = Router();
 
-router.get('/', verifyToken, onlyAdminOrBelongingToTheUser, getHoursByIdUser);
+router.get('/', verifyToken, getHoursByIdUser);
 router.post('/upload', verifyToken, onlyAdminOrBelongingToTheUser, uploadHours);
 router.patch('/update', verifyToken, onlyAdminOrBelongingToTheUser, updateHours);
 
