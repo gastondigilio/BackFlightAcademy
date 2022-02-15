@@ -1,7 +1,7 @@
 const { Users } = require('../setting/db.js')
 const comparePassword = require('./comparePassword')
 
-const checkUsers =  async (req, res, next) => {
+const onlyAdminOrBelongingToTheUser =  async (req, res, next) => {
     const { id, password } = req.body;
     try {
         const user = await Users.findOne({ where: { id } })
@@ -14,4 +14,4 @@ const checkUsers =  async (req, res, next) => {
     }
 }
 
-module.exports = checkUsers;
+module.exports = onlyAdminOrBelongingToTheUser;

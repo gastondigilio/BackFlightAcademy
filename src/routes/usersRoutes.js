@@ -9,7 +9,7 @@ const changeUsersRole = require('../controllers/users/changeUsersRole');
 const deleteUsers = require('../controllers/users/deleteUsers');
 const verifyAdminOrInstruct = require('../middlewares/verifyAdminOrInstruct');
 const { verifyToken } = require('../middlewares/tokens');
-const checkUsers = require('../middlewares/checkUsers');
+const onlyAdminOrBelongingToTheUser = require('../middlewares/onlyAdminOrBelongingToTheUser');
 
 const router = Router();
 
@@ -17,9 +17,9 @@ router.get('/all', verifyToken, verifyAdminOrInstruct, getAllUsers);
 router.post('/signup', createUsers);
 router.get('/veryficated', verificateUser);
 router.get('/signin', signinUser)
-router.patch('/update', verifyToken, checkUsers, updateUsers);
-router.patch('/update-password', verifyToken, checkUsers, updateUsersPassword)
+router.patch('/update', verifyToken, onlyAdminOrBelongingToTheUser, updateUsers);
+router.patch('/update-password', verifyToken, onlyAdminOrBelongingToTheUser, updateUsersPassword)
 router.patch('/change-role', verifyToken, verifyAdminOrInstruct, changeUsersRole);
-router.delete('/remove', verifyToken, checkUsers, deleteUsers)
+router.delete('/remove', verifyToken, onlyAdminOrBelongingToTheUser, deleteUsers)
 
 module.exports = router;
