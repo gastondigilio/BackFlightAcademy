@@ -9,19 +9,19 @@ const generateToken = (id) => {
     }
 }
 
-const verifyToken = ( req, res, next) => {
-    const { token } = req.body
+const verifyTokenAndTransformToId = ( req, res, next) => {
+    const Baerer = req.headers['x-access-token'] || req.headers['authorization'];
+    const token = Baerer.split(' ')[1];
     try {
         const { id } = jwt.verify(token, process.env.SECRET_KEY);
-        !id && res.status(401).json({ message: 'Invalid token' });
         req.body.id = id;
         next();
     } catch (error) {
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({ message: 'Invalid token, please try again' });
     }
 }
 
 module.exports = {
     generateToken,
-    verifyToken
+    verifyTokenAndTransformToId
 }

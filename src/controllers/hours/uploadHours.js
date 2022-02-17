@@ -3,11 +3,10 @@ const { Hours, Users } = require('../../setting/db.js');
 async function uploadHours(req, res, next) {
     const { id, totalFlightHours, totalFlights, flightHoursCurrentMonth, nextHours } = req.body;
     try {
-        const user = await Users.findOne({where: {id: id}});
+        const user = await Users.findOne({ where: { id: id } });
         if (totalFlightHours && totalFlights && flightHoursCurrentMonth && nextHours) {
             const hoursCreated = await Hours.create({
                 totalFlightHours, totalFlights, flightHoursCurrentMonth, nextHours
-
             })
             const hoursAdded = await hoursCreated.setUser(user)
             if (hoursAdded) {

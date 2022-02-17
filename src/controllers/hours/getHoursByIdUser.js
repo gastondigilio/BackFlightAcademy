@@ -2,7 +2,6 @@ const { Hours, Users } = require('../../setting/db.js');
 
 async function getHoursByIdUser(req, res, next) {
     const { id } = req.body;
-    console.log(id);
     try {
         const user = await Users.findByPk(id)
         if (['Admin','Instructor','Co-Admin'].includes(user.role)) {

@@ -8,7 +8,7 @@ const verificateUser = async (req, res, next) => {
         !userExist && res.status(400).json({message: 'User not exist'});
         userExist.isVerified = true 
         await userExist.save()
-        res.redirect('/')
+        res.send({message: 'User verified, please login'})
     }
     catch(error) {
         next(error);

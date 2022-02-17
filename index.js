@@ -43,13 +43,14 @@ const createDB = async () => {
   //create admin user for testing
   const password = await bcrypt.hash('admin', 10);
   await Users.findOrCreate({
-    where:{ email: "admin@email.com" },
+    where:{ email: "admin@gmail.com" },
     defaults: { name: "adminTest",
                 lastName: "adminLastname",
                 birthday: "06/01/1996",
                 password,
              // gender: "Other",
                 role: "Admin",
+                isVerified: true,
              // address: "Av Libertador",
              // cp: "CP1430",
              // telephone: 11547894

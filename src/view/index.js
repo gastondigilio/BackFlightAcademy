@@ -1,4 +1,4 @@
-module.exports.viewModel = `<html lang="en">
+const viewModel = `<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,3 +52,4 @@ module.exports.viewModel = `<html lang="en">
     </main>    
 </body>
 </html>`
+module.exports = viewModel;
