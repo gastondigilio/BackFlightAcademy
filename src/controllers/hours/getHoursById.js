@@ -18,7 +18,7 @@ async function getHoursById(req, res, next) {
             });
             if (user) {
                 if(user.hours[0]){
-                    return res.status(200).send(user.hours[0]);
+                    return res.status(200).send(user.hours);
                 }else{
                     return res.status(400).json({message: "This user has not hours uploaded"})
                 }
