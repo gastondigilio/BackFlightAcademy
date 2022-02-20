@@ -60,8 +60,7 @@ const createDB = async () => {
 
 // Syncing all the models at once.
 
-
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false },).then(() => {
   server.listen(process.env.PORT || 3001, async () => {
     console.time("Se creo la base de datos con exito");
     try {

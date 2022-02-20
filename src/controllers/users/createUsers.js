@@ -5,47 +5,17 @@ const sendEmailVerificationMessage = require('../../middlewares/sendEmailVerific
 const createUsers = async (req, res, next) => {
     const { name, lastName, email, password } = req.body;
     try {
-        if (email && pass) {
-            if (rol === "Alumno" || rol === "Piloto" || rol === "Instructor" || rol === "InstructorAdmin" || rol === "Admin") {
-                try {
-                    const users = await Users.create({
-                        name, lastName, rol, email, pass
-                    });
-
-                    if (users) {
-                        console.log('users created successfully')
-                        const user = await Users.findOne({ where: { id: users.id } });
-                        const totalFlightHours = 0;
-                        const totalFlights = 0;
-                        const flightHoursCurrentMonth = 0;
-                        if (totalFlightHours === 0 && totalFlights === 0 && flightHoursCurrentMonth === 0) {
-                            const hoursCreated = await Hours.create({
-                                totalFlightHours, totalFlights, flightHoursCurrentMonth
-                            })
-                            const hoursAdded = await hoursCreated.setUser(user)
-                            if (hoursAdded) {
-                                return res.status(200).json({ message: "user and hours created successfully" })
-                            } else {
-                                return res.status(400).json({ message: "the user and hours were not created" })
-                            }
-                        }
-                    } else {
-                        console.log('cannot create user')
-                        return res.status(400).json({ message: 'cannot create user' });
-                    }
-                } catch (error) {
-                    next(error);
-                }
-            } else {
-                console.log('rol selected is not valid o pass no enviada')
-                return res.status(400).json({ message: 'rol selected is not valid o pass no enviada' })
-            }
-        } else {
-            console.log("No hay pass o email")
-            return res.status(400).json({ message: 'Pass or email missing' })
-        }
-    } catch (error) {
-        next(error);
+        const user = await Users.create({name, lastName, email, password: await hashPass(password)})
+        const hours = await Hours.create({
+            totalFlightHours:0,
+            totalFlights:0,
+            flightHoursCurrentMonth:0
+        });
+        await hours.setUser(user)
+        sendEmailVerificationMessage(email)
+        res.status(201).json({
+            message: 'User created successfully, please verify your email for login'
+        })
     }
     catch (error) {
         next(error);
