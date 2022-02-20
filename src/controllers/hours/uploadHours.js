@@ -1,9 +1,9 @@
 const { Hours, Users } = require('../../setting/db.js');
 
 async function uploadHours(req, res, next) {
-    const { id, totalFlightHours, totalFlights, flightHoursCurrentMonth, nextHours } = req.body;
+    const { email, totalFlightHours, totalFlights, flightHoursCurrentMonth, nextHours } = req.body;
     try {
-        const user = await Users.findOne({ where: { id: id } });
+        const user = await Users.findOne({ where: { email: email } });
         if (totalFlightHours && totalFlights && flightHoursCurrentMonth && nextHours) {
             const hoursCreated = await Hours.create({
                 totalFlightHours, totalFlights, flightHoursCurrentMonth, nextHours

@@ -1,10 +1,10 @@
 const { Hours, Users } = require('../../setting/db.js');
 
 async function updateHours(req, res, next) {
-    const { userId, totalFlightHours, totalFlights, flightHoursCurrentMonth, nextHours } = req.body;
+    const { email, totalFlightHours, totalFlights, flightHoursCurrentMonth, nextHours } = req.body;
     try {
-        !userId && !totalFlightHours && !totalFlights && !flightHoursCurrentMonth && !nextHours && res.status(400).json({ message: "Bad request" });
-        const user = await Users.findOne({ where: { id: userId }, include: Hours });
+        !email && !totalFlightHours && !totalFlights && !flightHoursCurrentMonth && !nextHours && res.status(400).json({ message: "Bad request" });
+        const user = await Users.findOne({ where: { email: email }, include: Hours });
         console.log(user);
         if (user) {
             const hours = await user.Hours;
