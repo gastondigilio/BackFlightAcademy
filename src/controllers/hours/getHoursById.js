@@ -2,15 +2,15 @@ const { Hours, Users } = require('../../setting/db.js');
 
 
 async function getHoursById(req, res, next) {
-    const { id } = req.query;
+    const { email } = req.query;
     try {
-        if (!id) {
+        if (!email) {
             console.log("if linea 8 NO HAY ID")
             return res.status(400).json({
                 message: "Bad request",
             });
         } else {
-            const user = await Users.findByPk(id, {
+            const user = await Users.findByPk(email, {
                 include: [
                     {
                         model: Hours,
