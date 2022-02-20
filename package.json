@@ -4,7 +4,7 @@
   "description": "app of Flight Academy",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon -L",
     "dev": "nodemon index.js"
   },
   "author": "Flight Academy",
@@ -29,3 +29,5 @@
     "nodemon": "^2.0.6"
   }
 }
+
+
