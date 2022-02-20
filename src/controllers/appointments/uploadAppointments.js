@@ -10,18 +10,18 @@ async function uploadAppointments(req, res, next) {
                 const appointmentsUploaded = await Appointments.create({
                     plane, state, date
                 })
-                if (appointmentsUploaded) {
-                    return res.status(200).json(appointmentsUploaded)
-                } else {
-                    return res.status(404).json({ message: 'no anda' })
-                }
-                // const appointmentsAdded = await appointmentsUploaded.hasUser(user)
-                // // hasUser
-                // if (appointmentsAdded) {
-                //     return res.status(200).json({ message: "appointment asigned successfully" })
+                // if (appointmentsUploaded) {
+                //     return res.status(200).json(appointmentsUploaded)
                 // } else {
-                //     return res.status(400).json({ message: "the appointment was not asigned" })
+                //     return res.status(404).json({ message: 'no anda' })
                 // }
+                const appointmentsAdded = await appointmentsUploaded.addUser(user)
+                // hasUser
+                if (appointmentsAdded) {
+                    return res.status(200).json({ message: "appointment asigned successfully" })
+                } else {
+                    return res.status(400).json({ message: "the appointment was not asigned" })
+                }
             } else {
                 return res.status(400).json({ message: "User not found or missing parameter" })
             }
