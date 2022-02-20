@@ -1,12 +1,14 @@
 const { Router } = require('express');
-const {getHoursById} = require('../controllers/hours/getHoursById')
-const { uploadHours } = require('../controllers/hours/uploadHours');
-const {updateHours} = require('../controllers/hours/updateHours')
+const getHoursByIdUser = require('../controllers/hours/getHoursByIdUser')
+const uploadHours = require('../controllers/hours/uploadHours');
+const updateHours = require('../controllers/hours/updateHours')
+const { verifyTokenAndTransformToId } = require('../middlewares/tokens');
+const onlyAdminOrBelongingToTheUser = require('../middlewares/onlyAdminOrBelongingToTheUser');
 
 const router = Router();
 
-router.get('/', getHoursById);
-router.post('/upload', uploadHours);
-router.patch('/update', updateHours);
+router.get('/', verifyTokenAndTransformToId, getHoursByIdUser);
+router.post('/upload', verifyTokenAndTransformToId, onlyAdminOrBelongingToTheUser, uploadHours);
+router.patch('/update', verifyTokenAndTransformToId, onlyAdminOrBelongingToTheUser, updateHours);
 
 module.exports = router;

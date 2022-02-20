@@ -1,7 +1,9 @@
 const { Users, Hours } = require('../../setting/db.js');
+const { hashPass } = require('../../middlewares/bcrypt.js');
+const sendEmailVerificationMessage = require('../../middlewares/sendEmailVerificationMessage.js');
 
-async function createUsers(req, res, next) {
-    const { name, lastName, rol, email, pass } = req.body;
+const createUsers = async (req, res, next) => {
+    const { name, lastName, email, password } = req.body;
     try {
         if (email && pass) {
             if (rol === "Alumno" || rol === "Piloto" || rol === "Instructor" || rol === "InstructorAdmin" || rol === "Admin") {
@@ -45,6 +47,9 @@ async function createUsers(req, res, next) {
     } catch (error) {
         next(error);
     }
+    catch (error) {
+        next(error);
+    }        
 }
 
-module.exports = { createUsers };
+module.exports = createUsers
